@@ -1,0 +1,25 @@
+<form [formGroup]="form" >
+    <h2>Create new post</h2>
+    <div class="form-control" 
+    [ngClass]="{invalid: form.get('title')?.touched && form.get('title')?.invalid}">
+        <label for="title">Title:</label>
+        <input id="title" type="text" formControlName="title">
+        <div class="validation" *ngIf="form.get('title')?.touched && form.get('title')?.invalid">
+            <small *ngIf="form.get('title')?.errors?.required">Title is empty</small>
+        </div>
+    </div>
+
+    <div class="form-control">
+        <label > Content </label>
+        <quill-editor formControlName="text" ></quill-editor>
+    </div>
+
+    
+    <button
+    type="submit"
+    (click)="submit()"
+    class="btn btn-block btn-dark"
+    [disabled]="form.invalid"
+    > Pulish </button>
+
+</form>
