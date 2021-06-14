@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { fbCreateResponce, Post } from './interfaces';
+import { fbCreateResponse, Post } from './interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class PostService {
@@ -12,7 +12,7 @@ export class PostService {
   create(post: Post): Observable<Post> {
     return this.http.post<Post>(`${environment.fbDB}/posts.json`, post).pipe(
         //@ts-ignore
-      map((response: fbCreateResponce) => {
+      map((response: fbCreateResponse) => {
         const newPost: Post = {
           ...post,
           id: response.name,

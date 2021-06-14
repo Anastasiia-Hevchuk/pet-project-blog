@@ -8,9 +8,9 @@ import {PostPageComponent} from './post-page/post-page.component';
 const routes: Routes = [
   {
     path: '', component: MainLayoutComponent, children: [
-      {path: '', redirectTo: '/', pathMatch: 'full'}, // редірект на головну сторінку
-      {path: '', component: HomePageComponent}, // головна сторінка
-      {path: 'post/:id', component: PostPageComponent} // сторінка поста
+      {path: '', redirectTo: '/', pathMatch: 'full'},
+      {path: '', component: HomePageComponent},
+      {path: 'post/:id', component: PostPageComponent}
     ]
   },
   {

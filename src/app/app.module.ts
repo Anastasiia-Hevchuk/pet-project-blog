@@ -10,8 +10,9 @@ import { PostComponent } from './shared/components/post/post.component';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/auth.interceptor';
+import { FormsModule } from '@angular/forms';
 
-const INTERSEPTOR_PROVIDER: Provider ={
+const INTERSEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   multi: true,
   useClass: AuthInterceptor
@@ -26,8 +27,9 @@ const INTERSEPTOR_PROVIDER: Provider ={
     PostComponent
   ],
   imports: [
-    BrowserModule, // включає в себе common module та інші
-    AppRoutingModule, // для роутинга
+    FormsModule,
+    BrowserModule,
+    AppRoutingModule,
     SharedModule
   ],
   providers: [INTERSEPTOR_PROVIDER],
