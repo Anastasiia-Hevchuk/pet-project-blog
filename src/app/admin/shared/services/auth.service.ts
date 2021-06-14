@@ -29,11 +29,11 @@ export class AuthService {
     }
 
     logout() {
-        this.setToken(null)
+        this.setToken(null);
     }
 
     isAuthenticated(): boolean {
-        return !!this.token
+        return !!this.token;
     }
 
     get token(): string | null {
@@ -50,9 +50,7 @@ export class AuthService {
     private setToken(res: FbAuthResponse | null) {
 
         if (res) {
-       
-          
-                 // @ts-ignore
+         // @ts-ignore
             const expDate = new Date(new Date().getTime() + (res.expiresIn*1000))
             localStorage.setItem('fb-token', res.idToken)
             localStorage.setItem('fb-token-exp', expDate.toString())

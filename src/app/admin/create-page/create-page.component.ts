@@ -17,7 +17,7 @@ export class CreatePageComponent implements OnInit {
  
 })
 
-  constructor(private postService: PostService,     private alert: AlertService) { }
+  constructor(private postService: PostService, private alert: AlertService) { }
 
   ngOnInit(): void {
 
@@ -25,7 +25,7 @@ export class CreatePageComponent implements OnInit {
 
   submit(){
 
-    if(!this.form.valid){
+    if(this.form.invalid){
       return
     }
     const post:Post = {

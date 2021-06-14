@@ -9,8 +9,11 @@ import { PostService } from '../shared/post.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+
+  searchItem = ''
 //@ts-ignore
-  posts$: Observable<Post[]>
+  posts$: Observable<Post[]>;
+
 
   constructor(private postsService: PostService) {
   }

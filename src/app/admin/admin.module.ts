@@ -10,20 +10,27 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { AuthGuard } from './shared/services/auth.guard';
 import { LoginGuard } from './shared/services/login.guard';
-import { SearchPipe } from './shared/search.pipe';
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { AlertService } from './shared/services/alert.service';
+
 @NgModule({
-  declarations: [AdminLayoutComponent, LoginPageComponent, DashboardPageComponent, CreatePageComponent, EditPageComponent, SearchPipe, AlertComponent],
+  declarations: [
+    AdminLayoutComponent, 
+    LoginPageComponent, 
+    DashboardPageComponent, 
+    CreatePageComponent, 
+    EditPageComponent, 
+    AlertComponent
+  ],
   imports: [
-    CommonModule, // щоб були  доступні всі директиви та пайпи
+    CommonModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild([ // замість файла router module прописумо тут роути
+    RouterModule.forChild([ 
       {
-        path: '', component: AdminLayoutComponent, children: [ // /admin
-          {path: '', redirectTo: '/admin/login', pathMatch: 'full'}, //regirect to login page
+        path: '', component: AdminLayoutComponent, children: [ 
+          {path: '', redirectTo: '/admin/login', pathMatch: 'full'}, 
           {path: 'login', component: LoginPageComponent, canActivate: [LoginGuard]}, 
           {path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard]},
           {path: 'create', component: CreatePageComponent, canActivate: [AuthGuard]}, 

@@ -2,8 +2,11 @@
   *ngIf="posts$ | async as posts; else loading"
   class="posts"
 >
+  <div class="form-control">
+    <input type="text" placeholder="Search post by title..." [(ngModel)]="searchItem">
+  </div>
   <app-post
-    *ngFor="let post of posts" 
+    *ngFor="let post of posts | searchPosts: searchItem" 
     [post]="post"
   ></app-post>
 </div>

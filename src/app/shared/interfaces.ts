@@ -21,6 +21,6 @@ export interface Post {
     date: Date,
 }
 
-export interface fbCreateResponce {
+export interface fbCreateResponse {
     name: string
 }
