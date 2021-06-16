@@ -12,9 +12,7 @@ import { PostService } from '../shared/post.service';
 })
 export class PostPageComponent implements OnInit {
 
-  //@ts-ignore
-
-  post$: Observable<Post>
+  post$!: Observable<Post>;
 
   constructor(
     private route: ActivatedRoute,

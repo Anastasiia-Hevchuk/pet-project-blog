@@ -5,6 +5,7 @@ import {Post} from '../../shared/interfaces';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { PostService } from 'src/app/shared/post.service';
 import { AlertService } from '../shared/services/alert.service';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-edit-page',
@@ -12,17 +13,12 @@ import { AlertService } from '../shared/services/alert.service';
   styleUrls: ['./edit-page.component.scss']
 })
 export class EditPageComponent implements OnInit {
-  //@ts-ignore
-  // public form: FormGroup = new FormGroup({
-  //   title: new FormControl('', Validators.required),
-  //   text: new FormControl('', Validators.required)
-  // })
-  public form: FormGroup
-//@ts-ignore
-  post: Post 
+
+  public form!: FormGroup;
+  
+  post!: Post; 
   submitted = false
-//@ts-ignore
-  uSub: Subscription 
+  subscriptions: Subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -46,9 +42,7 @@ export class EditPageComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    if (this.uSub) {
-      this.uSub.unsubscribe()
-    }
+    this.subscriptions.unsubscribe();
   }
 
   submit() {
@@ -58,14 +52,14 @@ export class EditPageComponent implements OnInit {
 
     this.submitted = true
 
-    this.uSub = this.postsService.update({
+    this.subscriptions.add(this.postsService.update({
       ...this.post,
       text: this.form.value.text,
       title: this.form.value.title
     }).subscribe(() => {
       this.submitted = false
       this.alert.success('Post has been updating')
-    })
+    }))
   }
 }
 

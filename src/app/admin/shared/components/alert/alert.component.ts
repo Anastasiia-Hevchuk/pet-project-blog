@@ -13,8 +13,7 @@ export class AlertComponent implements OnInit, OnDestroy {
 
   public text: string = ''
   public type = 'success'
-//@ts-ignore
-  aSub: Subscription
+  aSub!: Subscription;
 
   constructor(private alertService: AlertService) { }
 

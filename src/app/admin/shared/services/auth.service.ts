@@ -23,7 +23,6 @@ export class AuthService {
             .pipe(
                 // @ts-ignore
                 tap(this.setToken),
-                                // @ts-ignore
                 catchError(this.handleError.bind(this))
             )
     }
@@ -37,20 +36,18 @@ export class AuthService {
     }
 
     get token(): string | null {
-        //@ts-ignore
-        const expDate = new Date(localStorage.getItem('fb-token-exp'))
+        const strExpDate: any = localStorage.getItem('fb-token-exp')?.toString();
+        const expDate = new Date(strExpDate);
         if (new Date() > expDate) {
             this.logout()
             return null
         }
-
         return localStorage.getItem('fb-token')
     }
 
     private setToken(res: FbAuthResponse | null) {
 
         if (res) {
-         // @ts-ignore
             const expDate = new Date(new Date().getTime() + (res.expiresIn*1000))
             localStorage.setItem('fb-token', res.idToken)
             localStorage.setItem('fb-token-exp', expDate.toString())

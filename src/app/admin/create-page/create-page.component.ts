@@ -10,7 +10,6 @@ import { AlertService } from '../shared/services/alert.service';
   styleUrls: ['./create-page.component.scss']
 })
 export class CreatePageComponent implements OnInit {
- //@ts-ignore
  public  form = new FormGroup({
   title: new FormControl(null, [ Validators.required]),
   text: new FormControl(null, [ Validators.required]),

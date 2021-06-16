@@ -11,9 +11,7 @@ import { PostService } from '../shared/post.service';
 export class HomePageComponent implements OnInit {
 
   searchItem = ''
-//@ts-ignore
-  posts$: Observable<Post[]>;
-
+  posts$!: Observable<Post[]>;
 
   constructor(private postsService: PostService) {
   }
