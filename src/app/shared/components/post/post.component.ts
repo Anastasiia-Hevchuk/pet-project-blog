@@ -7,8 +7,9 @@ import {Post} from '../../interfaces';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-//@ts-ignore
-  @Input() post: Post
+
+  @Input()
+  post!: Post;
 
   constructor() { }
 

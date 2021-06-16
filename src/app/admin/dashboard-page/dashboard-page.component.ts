@@ -10,10 +10,9 @@ import { AlertService } from '../shared/services/alert.service';
   styleUrls: ['./dashboard-page.component.scss']
 })
 export class DashboardPageComponent implements OnInit {
-  public posts: Post[] = []
-  pSub:Subscription | undefined
-  dSub: Subscription | undefined
-  searchStr = ''
+  public posts: Post[] = [];
+  subscriptions: Subscription = new Subscription();
+  searchStr = '';
 
   constructor(
     private postService:PostService,
@@ -21,28 +20,21 @@ export class DashboardPageComponent implements OnInit {
   ) { }
  
   ngOnInit(): void {
-   this.pSub = this.postService.getAll().subscribe(post =>{
-     this.posts = post
-     console.log(post);
-    })
+    this.subscriptions.add(this.postService.getAll().subscribe(post =>{
+      this.posts = post
+      console.log(post);
+    }))
   }
 
   remove(id: any) {
-    this.dSub = this.postService.remove(id).subscribe(() => {
+    this.subscriptions.add(this.postService.remove(id).subscribe(() => {
       this.posts = this.posts.filter(post => post.id !== id)
       this.alert.warning('Post has been deleted');
-    })
+    }))
   }
 
-
   ngOnDestroy(){
-    if(this.pSub){
-      this.pSub.unsubscribe()
-    }
-
-    if(this.dSub){
-      this.dSub.unsubscribe()
-    }
+    this.subscriptions.unsubscribe();
   }
 
 }
